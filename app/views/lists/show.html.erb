@@ -1,0 +1,30 @@
+<div class="container">
+  <%= render 'header' %>
+
+  <div class="list-group">
+    <div class="list-group-item py-3">
+      <%= render "items/form" %>
+    </div>
+
+    <%= render @list.items %>
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll(".todo-item").forEach(item => {
+      item.addEventListener("click", e => {
+          fetch(item.dataset.path, {
+              method: "PATCH",
+              headers: {
+                  "X-CSRF-Token": document.querySelector("meta[name='csrf-token']").content,
+              },
+          }).then(res => {
+              // item.checked = !item.checked;
+          }).catch(err => {
+              item.prop("checked", !item.checked);
+              // TODO: Display some error
+              console.error(`Failed to make request: ${err}`);
+          })
+      })
+  })
+</script>

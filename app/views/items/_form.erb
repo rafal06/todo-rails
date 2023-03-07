@@ -1,0 +1,4 @@
+<%= form_with model: [ @list, @list.items.build ] do |form| %>
+  <%= form.text_field :name, placeholder: "Add new item…", class: "form-control" %>
+  <%= form.submit class: "btn d-none" %>
+<% end %>

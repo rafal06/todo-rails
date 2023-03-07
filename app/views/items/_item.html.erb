@@ -1,0 +1,11 @@
+<% unless item.name.blank? %>
+  <label class="list-group-item" >
+    <input
+      class="form-check-input me-1 todo-item"
+      data-path="<%= "#{list_path}/items/#{item.id}" %>"
+      type="checkbox"
+      <%= item.done ? "checked" : "" %>
+    />
+    <%= item.name %>
+  </label>
+<% end %>
